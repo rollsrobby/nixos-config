@@ -2,10 +2,12 @@
 
 {
   home.packages = with pkgs; [
+    _1password-cli
     azurite
     cargo
     colima
     docker
+    git-spice
     graphite-cli
     lazydocker
     lua-language-server
@@ -17,7 +19,6 @@
     tmuxp
     typescript
     yq
-    _1password-cli
   ];
 
   programs = {
@@ -45,7 +46,9 @@
         cat = "bat";
         ll = "eza --icons --git --long --all";
         ls = "eza --icons --git --long";
-        oc = "opencode";
+        oc = "opencode .";
+        sml = "tmuxp load ~/.tmuxp/sml.yaml -a";
+        tks = "tmux kill-server";
       };
 
       initContent = ''
