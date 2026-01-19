@@ -2,13 +2,12 @@
 
 {
   home.packages = with pkgs; [
-    _1password-cli
+    # _1password-cli
     azurite
     cargo
-    colima
+    # colima
     docker
     git-spice
-    graphite-cli
     lazydocker
     lua-language-server
     ngrok
