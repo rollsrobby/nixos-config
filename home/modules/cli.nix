@@ -3,20 +3,20 @@
 {
   home.packages = with pkgs; [
     # _1password-cli
-    azurite
-    cargo
+    # azurite
+    # cargo
     # colima
-    docker
+    # docker
     git-spice
     lazydocker
-    lua-language-server
-    ngrok
+    # lua-language-server
+    # ngrok
     nil
-    nix-search-tv
-    procps
+    # nix-search-tv
+    # procps
     sesh
     tmuxp
-    typescript
+    # typescript
     yq
   ];
 
