@@ -78,7 +78,7 @@
 
     };
 
-    programs.git = {
+    git = {
       enable = true;
       userName = "rollsrobby";
       userEmail = "rms@gitignore.dev";
