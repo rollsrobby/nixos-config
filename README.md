@@ -32,7 +32,19 @@ This repository contains the NixOS configuration for a Framework 13 laptop, mana
 
 ## Installation
 
-1. Ensure you have Nix installed with Flakes enabled
+1. Connect to the Internet
+    ```
+    nmutil
+    ```
+2. Partition Disk
+    ```
+    sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
+      --mode destroy,format,mount \
+      --flake github:rollsrobby/nix-config#framework
+3. Install nixos
+    ```
+    sudo nixos-install --flake github:rollsrobby/nixos-config#framework
+    ```
 2. Clone this repository
 3. Build the system configuration:
    ```
