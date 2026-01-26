@@ -13,6 +13,7 @@ let
       rev = "master";
       sha256 = "sha256-NuxgECOmwRtGHpCP5J5TZDHjT3Pwyn2gf2zMu5tnwgI="; # replace after first build
     };
+    rtpFilePath = "tokyo-night.tmux";
   };
 in
 {
@@ -30,7 +31,16 @@ in
       sensible
       yank
       vim-tmux-navigator
-      tokyoNightTmux
+      {
+        plugin = tokyoNightTmux;
+        extraConfig = ''
+          # tokyo-night-tmux settings
+          set -g @tokyo-night-tmux_theme night
+          set -g @tokyo-night-tmux_transparent 1
+          set -g @tokyo-night-tmux_show_datetime 0
+          set -g @tokyo-night-tmux_window_id_style none
+        '';
+      }
     ];
 
     extraConfig = ''
@@ -47,11 +57,6 @@ in
       set -g pane-border-style 'fg=brightblack,bg=default'
 
       set -g automatic-rename on
-
-      # tokyo-night-tmux settings
-      set -g @tokyo-night-tmux_theme night
-      set -g @tokyo-night-tmux_transparent 1
-      set -g @tokyo-night-tmux_show_datetime 0
 
       # sesh
       bind-key "o" run-shell "sesh connect \"\$(
