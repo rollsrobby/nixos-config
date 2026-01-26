@@ -1,24 +1,24 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    # _1password-cli
-    # azurite
-    # cargo
-    # colima
-    # docker
-    git-spice
-    lazydocker
-    # lua-language-server
-    # ngrok
-    nil
-    # nix-search-tv
-    # procps
-    sesh
-    tmuxp
-    # typescript
-    yq
-  ];
+  # home.packages = with pkgs; [
+  #   # _1password-cli
+  #   # azurite
+  #   # cargo
+  #   # colima
+  #   # docker
+  #   git-spice
+  #   lazydocker
+  #   lua-language-server
+  #   # ngrok
+  #   nil
+  #   # nix-search-tv
+  #   # procps
+  #   # sesh
+  #   tmuxp
+  #   # typescript
+  #   yq
+  # ];
 
   programs = {
     zsh = {
@@ -79,16 +79,19 @@
 
     git = {
       enable = true;
-      userName = "rollsrobby";
-      userEmail = "rms@gitignore.dev";
+      settings = {
+        user.name = "rollsrobby";
+        user.email = "rms@gitignore.dev";
+      };
     };
 
     neovim.enable = true;
-    tmux.enable = true;
+    # tmux.enable = true;
     lazygit.enable = true;
 
     bat.enable = true;
     btop.enable = true;
+    htop.enable = true;
 
     direnv = {
       enable = true;
