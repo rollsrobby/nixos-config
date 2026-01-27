@@ -3,6 +3,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModprobeConfig = "options mt7921e disable_aspm=1";
+
   zramSwap = {
     enable = true;
     memoryMax = 10 * 1024 * 1024 * 1024;
@@ -12,6 +14,7 @@
 
   networking.hostName = "rms-fw";
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
 
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;

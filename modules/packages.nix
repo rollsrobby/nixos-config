@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    ungoogled-chromium
     chromium
     opencode
     networkmanager
@@ -11,6 +12,7 @@
     lazydocker
     lua-language-server
     nil
+    speedtest-cli
     tmuxp
     yq
   ];
