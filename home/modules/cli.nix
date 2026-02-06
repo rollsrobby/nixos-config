@@ -80,8 +80,16 @@
     git = {
       enable = true;
       settings = {
-        user.name = "rollsrobby";
-        user.email = "rms@gitignore.dev";
+        user = {
+          name = "rollsrobby";
+          email = "30313644+rollsrobby@users.noreply.github.com";
+          signingkey = "~/.ssh/id_ed25519_sk_git_sign_nano_b";
+        };
+        gpg.format = "ssh";
+        commit.gpgsign = true;
+        pull.rebase = true;
+        init.defaultBranch = "main";
+        rebase.updateRefs = true;
       };
     };
 

@@ -16,9 +16,14 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
 
+  # Bluetooth support
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
-
 
 
   # environment.systemPackages = with pkgs; [
@@ -34,12 +39,21 @@
   # AMD-specific (from nixos-hardware, but explicit if needed)
   services.power-profiles-daemon.enable = true;
 
+  # Battery monitoring
+  services.upower.enable = true;
+  systemd.services.upower.wantedBy = [ "multi-user.target" ];
+
   # Firmware updates
   services.fwupd.enable = true;
 
   # nixpkgs.config.allowUnfree = true;
 
   security.polkit.enable = true;
+
+  environment.variables = {
+    XCURSOR_THEME = "Banana";
+    XCURSOR_SIZE = "32";
+  };
 
   services.fprintd = {
     enable = true;
@@ -60,25 +74,30 @@
     enable = true;
     keyboards.default = {
       devices = ["/dev/input/event1"];
+      extraDefCfg = "process-unmapped-keys yes";
       config = ''
-        (defsrc
-         caps)
+        (defsrc caps)
 
         (deflayermap (default-layer)
-         ;; tap caps lock as caps lock, hold caps lock as left control
-         caps (tap-hold 150 120 esc lctl))
-        '';
-        };
+         ;; tap caps lock as esc, hold caps lock as left control
+         ;; 0 = no quick-tap (like QMK QUICK_TAP_TERM 0)
+         ;; 200 = hold timeout (like QMK TAPPING_TERM 200)
+         ;; tap-hold-press = hold on other key press (like QMK HOLD_ON_OTHER_KEY_PRESS)
+         caps (tap-hold-press 0 200 esc lctl))
+      '';
+    };
   };
 
-  users.users.rms = {
-    isNormalUser = true;
-    shell = pkgs.zsh;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-    ];
-  };
+   users.users.rms = {
+     isNormalUser = true;
+     shell = pkgs.zsh;
+     extraGroups = [
+       "wheel"
+       "networkmanager"
+       "bluetooth"
+       "video"
+     ];
+   };
 
   system.stateVersion = "25.05";
 
